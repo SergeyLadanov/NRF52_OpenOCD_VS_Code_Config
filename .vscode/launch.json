@@ -12,10 +12,11 @@
                 "type": "cortex-debug",
                 "servertype": "external",
                 "executable": "./Core/s112/armgcc/_build/nrf52811_xxaa.out",
-                //"executable": "./components/softdevice/s112/hex/s112_nrf52_7.2.0_softdevice.hex",
                 "runToMain": true,
                 "svdFile": "nrf52811.svd",
                 "gdbTarget": "localhost:3333",
+                "preLaunchTask": "start openocd",
+                "postDebugTask": "stop openocd"
         }
     ]
 }

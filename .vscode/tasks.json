@@ -19,6 +19,18 @@
                 "isDefault": true
             },
             "detail": "Компилятор: \"gcc.exe\""
+        },
+
+        {
+            "type": "shell",
+            "label": "start openocd",
+            "command": "start nrf52_start_debug.lnk"
+        },
+
+        {
+            "type": "shell",
+            "label": "stop openocd",
+            "command": "TASKKILL /F /IM openocd.exe"
         }
     ]
 }
