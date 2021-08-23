@@ -13,7 +13,7 @@
             "servertype": "openocd",
             "svdFile": "nrf52811.svd",
             "configFiles": [
-                "D:/Program Files/OpenOCD/share/openocd/scripts/board/stm32f429discovery.cfg"
+                "${workspaceRoot}/openocd.cfg"
             ]
         }
     ]
