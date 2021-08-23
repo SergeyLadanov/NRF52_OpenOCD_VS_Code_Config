@@ -1,0 +1,24 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: Сборка проекта",
+            "command": "",
+            "args": [
+                "mingw32-make.exe",
+                "--directory=${workspaceFolder}/Core/s112/armgcc"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Компилятор: \"gcc.exe\""
+        }
+    ]
+}
