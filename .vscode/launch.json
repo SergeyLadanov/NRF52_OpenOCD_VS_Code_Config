@@ -1,3 +1,4 @@
+// Требуется предварительный запуск openOCD
 {
     // Используйте IntelliSense, чтобы узнать о возможных атрибутах.
     // Наведите указатель мыши, чтобы просмотреть описания существующих атрибутов.
@@ -5,16 +6,41 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Cortex Debug",
-            "cwd": "${workspaceRoot}",
-            "executable": "./Core/s112/armgcc/_build/nrf52811_xxaa.hex",
-            "request": "launch",
-            "type": "cortex-debug",
-            "servertype": "openocd",
-            "svdFile": "nrf52811.svd",
-            "configFiles": [
-                "${workspaceRoot}/openocd.cfg"
-            ]
+                "name": "External GDB Server",
+                "cwd": "${workspaceRoot}",
+                "request": "launch",
+                "type": "cortex-debug",
+                "servertype": "external",
+                "executable": "./Core/s112/armgcc/_build/nrf52811_xxaa.out",
+                //"executable": "./components/softdevice/s112/hex/s112_nrf52_7.2.0_softdevice.hex",
+                "runToMain": true,
+                "svdFile": "nrf52811.svd",
+                "gdbTarget": "localhost:3333",
         }
     ]
 }
+
+
+
+// Запуск openOCD через VS Code
+
+// {
+//     // Используйте IntelliSense, чтобы узнать о возможных атрибутах.
+//     // Наведите указатель мыши, чтобы просмотреть описания существующих атрибутов.
+//     // Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
+//     "version": "0.2.0",
+//     "configurations": [
+//         {
+//             "name": "Cortex Debug",
+//             "cwd": "${workspaceRoot}",
+//             "executable": "./Core/s112/armgcc/_build/nrf52811_xxaa.hex",
+//             "request": "launch",
+//             "type": "cortex-debug",
+//             "servertype": "openocd",
+//             "svdFile": "nrf52811.svd",
+//             "configFiles": [
+//                 "${workspaceRoot}/openocd.cfg"
+//             ]
+//         }
+//     ]
+// }

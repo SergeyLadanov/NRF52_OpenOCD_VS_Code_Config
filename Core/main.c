@@ -285,7 +285,7 @@ static void idle_state_handle(void)
     }
 }
 
-
+volatile uint32_t *ptr =  0x00000000;
 /**
  * @brief Function for application main entry.
  */
@@ -295,6 +295,7 @@ int main(void)
     log_init();
     timers_init();
     leds_init();
+    ptr++;
     power_management_init();
     ble_stack_init();
     advertising_init();
