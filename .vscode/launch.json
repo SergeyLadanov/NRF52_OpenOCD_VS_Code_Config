@@ -14,7 +14,7 @@
             "servertype": "openocd",
             "runToMain": true,
             "svdFile": "nrf52811.svd",
-            "preLaunchTask": "Build_project",
+            "preLaunchTask": "Build project",
             "configFiles": [
                 "${workspaceRoot}/NRF52811.cfg"
             ]
@@ -31,7 +31,7 @@
             "runToMain": true,
             "svdFile": "nrf52811.svd",
             "gdbTarget": "localhost:3333",
-            "preLaunchTask": "Build_project"
+            "preLaunchTask": "Build project"
         }
     ]
 }

@@ -5,7 +5,7 @@
     "tasks": [
         {
             "type": "cppbuild",
-            "label": "Build_project",
+            "label": "Build project",
             "command": "",
             "args": [
                 "mingw32-make.exe",
@@ -18,7 +18,29 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "Компилятор: \"gcc.exe\""
+            "detail": "Компилятор: \"arm-none-eabi-gcc.exe\""
+        },
+
+        {
+            "type": "shell",
+            "label": "Program softdevice",
+            "command": "",
+            "args": [
+                "${workspaceFolder}/flash-load-scripts/program_softdevice.bat"
+            ],
+            "problemMatcher": [],
+            "detail": "Загрузка softdevice во внутренюю Flash память"
+        },
+
+        {
+            "type": "shell",
+            "label": "Program hex file",
+            "command": "",
+            "args": [
+                "${workspaceFolder}/flash-load-scripts/program_hex.bat"
+            ],
+            "problemMatcher": [],
+            "detail": "Загрузка hex файла во внутренюю Flash память"
         }
     ]
 }
