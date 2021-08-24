@@ -1,47 +1,37 @@
-// Требуется предварительный запуск openOCD
 {
     // Используйте IntelliSense, чтобы узнать о возможных атрибутах.
     // Наведите указатель мыши, чтобы просмотреть описания существующих атрибутов.
     // Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        // Конфигурация для локальной отладки
         {
-                "name": "External GDB Server",
-                "cwd": "${workspaceRoot}",
-                "request": "launch",
-                "type": "cortex-debug",
-                "servertype": "external",
-                "executable": "./Core/s112/armgcc/_build/nrf52811_xxaa.out",
-                "runToMain": true,
-                "svdFile": "nrf52811.svd",
-                "gdbTarget": "localhost:3333",
-                "preLaunchTask": "start openocd",
-                "postDebugTask": "stop openocd"
+            "name": "Cortex Debug",
+            "cwd": "${workspaceRoot}",
+            "executable": "./Core/s112/armgcc/_build/nrf52811_xxaa.out",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "runToMain": true,
+            "svdFile": "nrf52811.svd",
+            "preLaunchTask": "Build_project",
+            "configFiles": [
+                "${workspaceRoot}/NRF52811.cfg"
+            ]
+        },
+
+        // Конфигурация для удаленной отладки
+        {
+            "name": "External GDB Server",
+            "cwd": "${workspaceRoot}",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "external",
+            "executable": "./Core/s112/armgcc/_build/nrf52811_xxaa.out",
+            "runToMain": true,
+            "svdFile": "nrf52811.svd",
+            "gdbTarget": "localhost:3333",
+            "preLaunchTask": "Build_project"
         }
     ]
 }
-
-
-
-// Запуск openOCD через VS Code
-
-// {
-//     // Используйте IntelliSense, чтобы узнать о возможных атрибутах.
-//     // Наведите указатель мыши, чтобы просмотреть описания существующих атрибутов.
-//     // Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
-//     "version": "0.2.0",
-//     "configurations": [
-//         {
-//             "name": "Cortex Debug",
-//             "cwd": "${workspaceRoot}",
-//             "executable": "./Core/s112/armgcc/_build/nrf52811_xxaa.hex",
-//             "request": "launch",
-//             "type": "cortex-debug",
-//             "servertype": "openocd",
-//             "svdFile": "nrf52811.svd",
-//             "configFiles": [
-//                 "${workspaceRoot}/openocd.cfg"
-//             ]
-//         }
-//     ]
-// }
