@@ -285,6 +285,13 @@ erase:
 	nrfjprog -f nrf52 --eraseall
 endif
 
+clean:
+ifeq ($(OS),Windows_NT)
+	RMDIR /S /Q $(OUTPUT_DIRECTORY)
+else
+	rm -r $(OUTPUT_DIRECTORY)
+endif
+
 SDK_CONFIG_FILE := ../config/sdk_config.h
 CMSIS_CONFIG_TOOL := $(SDK_ROOT)/external_tools/cmsisconfig/CMSIS_Configuration_Wizard.jar
 sdk_config:

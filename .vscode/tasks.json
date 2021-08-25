@@ -71,6 +71,19 @@
             ],
             "problemMatcher": [],
             "detail": "Запуск конфигуратора SDK"
+        },
+
+        {
+            "type": "shell",
+            "label": "Clean",
+            "command": "",
+            "args": [
+                "mingw32-make",
+                "--directory=${workspaceFolder}/Core/s112/armgcc",
+                "clean"
+            ],
+            "problemMatcher": [],
+            "detail": "Очистка выходных файлов проекта"
         }
     ]
 }
