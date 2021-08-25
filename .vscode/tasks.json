@@ -26,7 +26,9 @@
             "label": "Program softdevice",
             "command": "",
             "args": [
-                "${workspaceFolder}/flash-load-scripts/program_softdevice.bat"
+                "mingw32-make.exe",
+                "--directory=${workspaceFolder}/Core/s112/armgcc",
+                "flash_softdevice"
             ],
             "problemMatcher": [],
             "detail": "Загрузка softdevice во внутренюю Flash память"
@@ -37,10 +39,25 @@
             "label": "Program hex file",
             "command": "",
             "args": [
-                "${workspaceFolder}/flash-load-scripts/program_hex.bat"
+                "mingw32-make.exe",
+                "--directory=${workspaceFolder}/Core/s112/armgcc",
+                "flash"
             ],
             "problemMatcher": [],
             "detail": "Загрузка hex файла во внутренюю Flash память"
+        },
+
+        {
+            "type": "shell",
+            "label": "Erase chip",
+            "command": "",
+            "args": [
+                "mingw32-make.exe",
+                "--directory=${workspaceFolder}/Core/s112/armgcc",
+                "erase"
+            ],
+            "problemMatcher": [],
+            "detail": "Очистка внутренней Flash памяти"
         }
     ]
 }

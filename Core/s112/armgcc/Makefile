@@ -1,6 +1,7 @@
 PROJECT_NAME     := ble_app_beacon_pca10056e_s112
 TARGETS          := nrf52811_xxaa
 OUTPUT_DIRECTORY := _build
+USE_OPENOCD      := 1
 
 SDK_ROOT := ../../..
 PROJ_DIR := ../..
@@ -253,19 +254,36 @@ $(foreach target, $(TARGETS), $(call define_target, $(target)))
 .PHONY: flash flash_softdevice erase
 
 # Flash the program
+ifeq ($(USE_OPENOCD), 1)
+flash: default
+	@echo Flashing: $(OUTPUT_DIRECTORY)/nrf52811_xxaa.hex
+	openocd -f interface/stlink.cfg -f target/nrf52.cfg -c init -c "reset halt" -c "flash write_image $(OUTPUT_DIRECTORY)/nrf52811_xxaa.hex" -c reset -c exit
+else
 flash: default
 	@echo Flashing: $(OUTPUT_DIRECTORY)/nrf52811_xxaa.hex
 	nrfjprog -f nrf52 --program $(OUTPUT_DIRECTORY)/nrf52811_xxaa.hex --sectorerase
 	nrfjprog -f nrf52 --reset
+endif
 
 # Flash softdevice
+ifeq ($(USE_OPENOCD), 1)
+flash_softdevice:
+	@echo Flashing: s112_nrf52_7.2.0_softdevice.hex
+	openocd -f interface/stlink.cfg -f target/nrf52.cfg -c init -c "reset halt" -c "nrf5 mass_erase" -c "flash write_image $(SDK_ROOT)/components/softdevice/s112/hex/s112_nrf52_7.2.0_softdevice.hex" -c reset -c exit
+else
 flash_softdevice:
 	@echo Flashing: s112_nrf52_7.2.0_softdevice.hex
 	nrfjprog -f nrf52 --program $(SDK_ROOT)/components/softdevice/s112/hex/s112_nrf52_7.2.0_softdevice.hex --sectorerase
 	nrfjprog -f nrf52 --reset
+endif
 
+ifeq ($(USE_OPENOCD), 1)
+erase:
+	openocd -f interface/stlink.cfg -f target/nrf52.cfg -c init -c "reset halt" -c "nrf5 mass_erase" -c reset -c exit
+else
 erase:
 	nrfjprog -f nrf52 --eraseall
+endif
 
 SDK_CONFIG_FILE := ../config/sdk_config.h
 CMSIS_CONFIG_TOOL := $(SDK_ROOT)/external_tools/cmsisconfig/CMSIS_Configuration_Wizard.jar
