@@ -58,6 +58,19 @@
             ],
             "problemMatcher": [],
             "detail": "Очистка внутренней Flash памяти"
+        },
+
+        {
+            "type": "shell",
+            "label": "SDK config",
+            "command": "",
+            "args": [
+                "mingw32-make.exe",
+                "--directory=${workspaceFolder}/Core/s112/armgcc",
+                "sdk_config"
+            ],
+            "problemMatcher": [],
+            "detail": "Запуск конфигуратора SDK"
         }
     ]
 }
